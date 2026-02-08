@@ -32,4 +32,33 @@
  */
 export function calculateCoffeePrice(size, type, extras = {}) {
   // Your code here
+
+  if ((size === "small" || size === "medium" || size === "large") && (type === "regular" || type === "latte" || type === "cappuccino" || type === "mocha")) {
+    let totalCost = 0;
+    const sizeMap = new Map();
+    sizeMap.set("small", 3.00);
+    sizeMap.set("medium", 4.00);
+    sizeMap.set("large", 5.00);
+
+    const typeMap = new Map();
+    typeMap.set("regular", 0.00);
+    typeMap.set("latte", 1.00);
+    typeMap.set("cappuccino", 1.50);
+    typeMap.set("mocha", 2.00);
+
+
+    totalCost = sizeMap.get(size) + typeMap.get(type);
+
+    if (extras.whippedCream) {
+      totalCost += 0.50;
+    }
+    if (extras.extraShot) {
+      totalCost += 0.75;
+    }
+
+    return Math.round(totalCost * 100) / 100;
+  }
+
+  return -1;
+
 }
